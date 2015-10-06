@@ -2,7 +2,7 @@ var hours = process.argv[2];
 var minutes = process.argv[3];
 
 var arabicToRomanTable = {
-    1: 'I',
+	1: 'I',
 	4: 'IV',
 	5: 'V',
 	9: 'IX',
