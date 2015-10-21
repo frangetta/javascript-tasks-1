@@ -1,3 +1,4 @@
+'use strict'; 
 var hours = process.argv[2];
 var minutes = process.argv[3];
 
@@ -12,7 +13,7 @@ var arabicToRomanTable = {
 };
 var orderedArabicNumbers = [50, 40, 10, 9, 5, 4, 1];
 
-var ascii_letters = {
+var asciiLetters = {
 	"I":[5, 2, 2, 2, 5],
 	"X":[4, 3, 2, 3, 4],
 	"L":[1, 1, 1, 1, 5],
@@ -20,7 +21,7 @@ var ascii_letters = {
 	":":[2, 2, 0, 2, 2],
 	"-":[0, 0, 5, 0, 0]
 };
-var ascii_strings = ['      ', '#     ', '  ##  ', ' #  # ', '#    #', '######'];
+var asciiStrings = ['      ', '#     ', '  ##  ', ' #  # ', '#    #', '######'];
 
 function validate(hours, minutes){ 
 	if((hours < 0 || hours > 23)||(minutes < 0 || minutes > 59)||isNaN(hours)||isNaN(minutes)){
@@ -37,7 +38,7 @@ function containsDigit(time, digit){
 function determineTheOrder(arabicToConvert, orderedNumbers){
 	var orderOfRomanDigits = [];
 	var j = 0;
-	for (i = 0; i < orderedNumbers.length; i++){
+	for (var i = 0; i < orderedNumbers.length; i++){
 		while (arabicToConvert >= 0){
 			if (containsDigit(arabicToConvert, orderedNumbers[i]) == true){
 				orderOfRomanDigits[j] = orderedNumbers[i];
@@ -53,6 +54,7 @@ function determineTheOrder(arabicToConvert, orderedNumbers){
 
 function renderResult(orderOfRoman){
 	var result = "";
+	var i;
 	for (i=0; i < orderOfRoman.length; i++){
 		result += arabicToRomanTable[orderOfRoman[i]];
 	}
@@ -71,9 +73,9 @@ function convertTimeToRoman(time, orderedNumbers){
 function romanTimeToAscii(romanTime){
 	var symbolsArray = romanTime.split('');
 	var output = '\n';
-	for(j=0; j < 5; j++){
-		for(i=0; i < symbolsArray.length; i++){
-			output += ascii_strings[ascii_letters[symbolsArray[i]][j]];
+	for(var j=0; j < 5; j++){
+		for(var i=0; i < symbolsArray.length; i++){
+			output += asciiStrings[asciiLetters[symbolsArray[i]][j]];
 			output += ' ';
 		}
 		output += '\n';
